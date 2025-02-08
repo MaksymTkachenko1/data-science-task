@@ -1,0 +1,9 @@
+# VS Code settings
+.vscode/
+
+# Outputs and data directories 
+outputs/
+data/
+
+# NLTK data (do not push to repo)
+notebooks/nltk_data/
