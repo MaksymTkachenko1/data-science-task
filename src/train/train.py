@@ -12,6 +12,7 @@ from nltk.stem import WordNetLemmatizer
 from nltk.tokenize import word_tokenize
 import random
 import numpy as np
+import re  # <-- added import for regex operations
 
 # Set seeds for reproducibility
 random.seed(42)
@@ -44,13 +45,22 @@ def dummy_preprocessor(doc):
     return doc
 
 # Preprocessing functions
+def clean_text(text):
+    """Removes URLs, HTML tags, numbers, and non-ASCII characters from text."""
+    text = re.sub(r'http\S+|www\S+', '', text)  # Remove URLs
+    text = re.sub(r'<.*?>', '', text)            # Remove HTML tags
+    text = re.sub(r'\d+', '', text)              # Remove numbers
+    text = re.sub(r'[^\x00-\x7F]+','', text)      # Remove non-ASCII characters (e.g., emojis)
+    return text
+
 def tokenize_text(text):
     """Tokenizes the input text."""
     return word_tokenize(text.lower())
 
 def remove_stopwords(tokens):
-    """Removes stopwords from a list of tokens."""
+    """Removes stopwords (except 'not') and punctuation from a list of tokens."""
     stop_words = set(stopwords.words('english'))
+    stop_words.discard("not")  # Retain 'not' for sentiment analysis
     return [token for token in tokens if token not in stop_words and token not in string.punctuation]
 
 def lemmatize_tokens(tokens):
@@ -59,7 +69,8 @@ def lemmatize_tokens(tokens):
     return [lemmatizer.lemmatize(token) for token in tokens]
 
 def preprocess_text(text):
-    """Performs tokenization, stop-word removal, and lemmatization."""
+    """Cleans and processes text: cleaning, tokenization, stop-word removal, and lemmatization."""
+    text = clean_text(text)  # <-- clean the text first
     tokens = tokenize_text(text)
     tokens = remove_stopwords(tokens)
     tokens = lemmatize_tokens(tokens)

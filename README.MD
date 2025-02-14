@@ -79,21 +79,21 @@ Lemmatization.
     | SVM                    | CountVectorizer | Stemmed       | 0.8677   |
     | SVM                    | TfidfVectorizer | Stemmed       | 0.8973   |
     | SVM                    | CountVectorizer | Lemmatized    | 0.8747   |
-    | SVM                    | TfidfVectorizer | Lemmatized    | **0.9033**   |
+    | SVM                    | TfidfVectorizer | Lemmatized    | **0.9013**   |
     | MultinomialNB          | CountVectorizer | Stemmed       | 0.8550   |
     | MultinomialNB          | CountVectorizer | Lemmatized    | 0.8582   |
     | MultinomialNB          | TfidfVectorizer | Stemmed       | 0.8624   |
     | MultinomialNB          | TfidfVectorizer | Lemmatized    | 0.8692   |
 
 *   **Best Model Selection:** Based on the comparison, **SVM with TfidfVectorizer on lemmatized text was chosen as the best model** 
-due to achieving the highest accuracy of **0.9033**, comfortably exceeding the target accuracy of 0.85. SVMs are well-suited for
+due to achieving the highest accuracy of **0.9013**, comfortably exceeding the target accuracy of 0.85. SVMs are well-suited for
 high-dimensional text data and, combined with TF-IDF vectorization and lemmatization, proved to be the most effective configuration 
 for this sentiment classification task.
 
 **Overall Performance Evaluation:**
 
 *   **Best Model:** SVM with TfidfVectorizer (Lemmatized Text)
-*   **Accuracy on Test Set:** **0.9033**
+*   **Accuracy on Test Set:** **0.9013**
 
     *Achieved accuracy is greater than the required 0.85.*
 
